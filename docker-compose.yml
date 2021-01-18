@@ -1,0 +1,48 @@
+version: "2"
+
+services:
+  nodejs:
+    build: ./node.js
+    links:
+         - mysql 
+    ports:
+         - 8080:8080
+    volumes:
+         - ./node.js:/src
+    networks:
+        uln:
+         ipv4_address: 10.7.0.3
+
+  mysql:
+    image: mysql:5.7
+    ports:
+        - 3306:3306
+    volumes:
+        - ./mysql:/var/lib/mysql
+    environment:
+        MYSQL_ROOT_PASSWORD: secret
+        MYSQL_DATABASE: webprog 
+        MYSQL_USER: webprog 
+        MYSQL_PASSWORD: webprog
+    networks:
+        uln:
+         ipv4_address: 10.7.0.4
+
+  nginx:
+    build: ./nginx/
+    ports:
+       - 80:80
+    depends_on:
+       - nodejs 
+    links:
+       - nodejs
+    networks:
+        uln:
+         ipv4_address: 10.7.0.2
+
+networks:
+    uln:
+     ipam:
+        config:
+         - subnet: 10.7.0.0/16
+           ip_range: 10.7.0.0/24

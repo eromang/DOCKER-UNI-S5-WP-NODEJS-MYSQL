@@ -1,0 +1,45 @@
+
+   <%- include header %>
+   <!-- Main component for the homepage -->
+      <div class="jumbotron">
+        <h2><span class="label label-default">COVID-19 contact list</span></h2>
+        <p></p>
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>#</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Contact Date</th>
+            <th>Contact Description</th>
+            <th colspan="2">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% for(var i=0; i < data.length; i++) { %>
+          <tr>
+            <td><%= data[i].personID %></td>
+            <td><%= data[i].personFirstName %></td>
+            <td><%= data[i].personLastName %></td>
+            <td><%= data[i].contactDate %></td>
+            <td><%= data[i].contactDescription %></td>
+            <td>
+              <form action="/view_person" method="POST">
+                <input type="hidden" name="personID" value="<%= data[i].personID %>">
+                <button class="btn btn-xs btn-primary" type="submit">View Contact</button>
+              </form> 
+            </td>
+            <td>
+              <form action="/delete_contact" method="POST">
+                <input type="hidden" name="personID" value="<%= data[i].personID %>">
+                <input type="hidden" name="contactID" value="<%= data[i].contactID %>">
+                <button class="btn btn-xs btn-danger" type="submit">Delete Contact</button>
+              </form>
+            </td>
+          </tr>
+        <% } %>
+      </tbody>
+      </table>
+      <button class="btn btn-xs btn-primary" type="button" onclick="window.history.back();">Back</button>
+      </div>
+    <%- include footer %>

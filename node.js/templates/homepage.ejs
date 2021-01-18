@@ -1,0 +1,57 @@
+
+   <%- include header %>
+   <!-- Main component for the homepage -->
+      <div class="jumbotron">
+        <h2><span class="label label-default">COVID-19 contact list</span></h2>
+        <p></p>
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>#</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th colspan="5">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% for(var i=0; i < data.length; i++) { %>
+          <tr>
+            <td><%= data[i].personID %></td>
+            <td><%= data[i].personFirstName %></td>
+            <td><%= data[i].personLastName %></td>
+            <td>
+              <form action="/view_person" method="POST">
+                <input type="hidden" name="personID" value="<%= data[i].personID %>">
+                <button class="btn btn-xs btn-primary" type="submit">View Person</button>
+              </form> 
+            </td>
+            <td>
+              <form action="/edit_person" method="POST">
+                <input type="hidden" name="personID" value="<%= data[i].personID %>">
+                <button class="btn btn-xs btn-primary" type="submit">Edit Person</button>
+              </form>
+            </td>
+            <td>
+              <form action="/add1_contact" method="POST">
+                <input type="hidden" name="personID" value="<%= data[i].personID %>">
+                <button class="btn btn-xs btn-warning" type="submit">Add Contact</button>
+              </form>
+            </td>
+            <td>
+              <form action="/view_contacts" method="POST">
+                <input type="hidden" name="personID" value="<%= data[i].personID %>">
+                <button class="btn btn-xs btn-warning" type="submit">View Contacts</button>
+              </form>
+            </td>
+            <td>
+              <form action="/delete_person" method="POST">
+                <input type="hidden" name="personID" value="<%= data[i].personID %>">
+                <button class="btn btn-xs btn-danger" type="submit">Delete Person</button>
+              </form>
+            </td>
+          </tr>
+        <% } %>
+      </tbody>
+      </table>
+      </div>
+    <%- include footer %>

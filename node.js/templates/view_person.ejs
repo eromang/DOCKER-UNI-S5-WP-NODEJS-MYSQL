@@ -1,0 +1,63 @@
+
+   <%- include header %>
+   <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <h2><span class="label label-default">COVID-19 contact list</span></h2>
+        <p></p>
+
+        <% for(var i=0; i < data.length; i++) { %>
+        <ul class="list-group">
+          
+          <li class="list-group-item active"><h5><%= data[i].personFirstName %> <%= data[i].personLastName %></h5></li>
+          <li class="list-group-item"><b>ID:</b> <%= data[i].personID %></li>
+          <li class="list-group-item"><b>Last name:</b> <%= data[i].personLastName %></li>
+          <li class="list-group-item"><b>First name:</b> <%= data[i].personFirstName %></li>
+          <li class="list-group-item"><b>Nationality</b> <%= data[i].personNationality %></li>
+          <li class="list-group-item"><b>Address:</b> <%= data[i].personAddress %></li>
+          <li class="list-group-item"><b>Zip code:</b> <%= data[i].personZipCode %></li>
+          <li class="list-group-item"><b>City:</b> <%= data[i].personCity %></li>
+          <li class="list-group-item"><b>Country:</b> <%= data[i].personCountry %></li>
+          <li class="list-group-item"><b>Mobile number:</b> <%= data[i].personMobile %></li>
+          <li class="list-group-item"><b>Email:</b> <%= data[i].personEmail %></li>
+         
+        </ul>
+
+        <table>
+          <tr>
+            <td>
+              <form action="/edit_person" method="POST">
+                <input type="hidden" name="personID" value="<%= data[i].personID %>">
+                <button class="btn btn-xs btn-primary" type="button" onclick="window.history.back();">Back</button>
+              </form> 
+            </td>
+            <td>
+              <form action="/edit_person" method="POST">
+                <input type="hidden" name="personID" value="<%= data[i].personID %>">
+                <button class="btn btn-xs btn-primary" type="submit">Edit Person</button>
+              </form> 
+            </td>
+            <td>
+              <form action="/view_contacts" method="POST">
+                <input type="hidden" name="personID" value="<%= data[i].personID %>">
+                <button class="btn btn-xs btn-warning" type="submit">View contacts</button>
+              </form>
+            </td>
+            <td>
+              <form action="/add1_contact" method="POST">
+                <input type="hidden" name="personID" value="<%= data[i].personID %>">
+                <button class="btn btn-xs btn-warning" type="submit">Add contact</button>
+              </form>
+            </td>
+            <td>
+              <form action="/delete_person" method="POST">
+                <input type="hidden" name="personID" value="<%= data[i].personID %>">
+                <button class="btn btn-xs btn-danger" type="submit">Delete Person</button>
+              </form>
+            </td>
+          </tr>
+        </table>
+
+        <% } %>
+
+      </div>
+    <%- include footer %>

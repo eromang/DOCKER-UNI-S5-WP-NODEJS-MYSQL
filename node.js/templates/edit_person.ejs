@@ -1,0 +1,36 @@
+
+   <%- include header %>
+   <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <h2><span class="label label-default">COVID-19 contact list</span></h2>
+        <p></p>
+
+        <% for(var i=0; i < data.length; i++) { %>
+        <form action="/update_person" method="POST">
+
+        <ul class="list-group">
+          
+          <li class="list-group-item active"><h5>Update a person</h5></li>
+          <li class="list-group-item"><b>ID:</b> <%= data[i].personID %></li>
+          <li class="list-group-item"><b>Last name:</b> <input type="text" name="personLastName" value="<%= data[i].personLastName %>"></li>
+          <li class="list-group-item"><b>First name:</b> <input type="text" name="personFirstName" value="<%= data[i].personFirstName %>"></li>
+          <li class="list-group-item"><b>Nationality</b> <input type="text" name="personNationality" value="<%= data[i].personNationality %>"></li>
+          <li class="list-group-item"><b>Address:</b> <input type="text" name="personAddress" value="<%= data[i].personAddress %>"></li>
+          <li class="list-group-item"><b>Zip code:</b> <input type="text" name="personZipCode" value="<%= data[i].personZipCode %>"></li>
+          <li class="list-group-item"><b>City:</b> <input type="text" name="personCity" value="<%= data[i].personCity %>"></li>
+          <li class="list-group-item"><b>Country:</b> <input type="text" name="personCountry" value="<%= data[i].personCountry %>"></li>
+          <li class="list-group-item"><b>Mobile number:</b> <input type="text" name="personMobile" value="<%= data[i].personMobile %>"></li>
+          <li class="list-group-item"><b>Email:</b> <input type="email" name="personEmail" value="<%= data[i].personEmail %>"></li>
+         
+        </ul>
+
+        <input type="hidden" name="personID" value="<%= data[i].personID %>">
+        <button class="btn btn-xs btn-primary" type="button" onclick="window.history.back();">Back</button>
+        <button class="btn btn-xs btn-danger" type="submit">Update Person</button>
+
+        </form>
+
+        <% } %>
+
+      </div>
+    <%- include footer %>

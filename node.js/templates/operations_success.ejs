@@ -1,0 +1,15 @@
+
+   <%- include header %>
+   <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <h2><span class="label label-default">COVID-19 contact list</span></h2>
+        <p></p>
+
+        <% if (message.length > 0) { %>
+          <div class="alert alert-success" role="alert">
+            <strong>Well done!</strong> <%= message %>. <a href="/">Return to home page</a>
+          </div>
+        <% } %>
+
+      </div>
+    <%- include footer %>
